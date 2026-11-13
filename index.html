@@ -1,925 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>G-TechMods | Download Minecraft Mods &amp; Addons</title>
-<meta name="description" content="Explore and download custom Minecraft mods, mobs, addons, and unique creations from G-TechMods.">
+<title>G-TechMods | Minecraft Mod Library</title>
+<meta name="description" content="G-TechMods is a creative Minecraft mod library: unique mods, immersive horror experiences, custom creatures and exciting addons. Free direct downloads.">
 <meta name="theme-color" content="#FFFFFF">
-<link rel="canonical" href="https://g-techmods.github.io/minecraft-mods/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="G-TechMods">
-<meta property="og:title" content="G-TechMods | Download Minecraft Mods &amp; Addons">
-<meta property="og:description" content="Explore and download custom Minecraft mods, mobs, addons, and unique creations from G-TechMods.">
-<meta property="og:url" content="https://g-techmods.github.io/minecraft-mods/">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080D12'/%3E%3Cpath d='M16 4l11 6v12l-11 6L5 22V10z' fill='none' stroke='%2356FF87' stroke-width='2'/%3E%3Cpath d='M5 10l11 6 11-6M16 16v12' fill='none' stroke='%23259BFF' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#FFFFFF; --bg2:#F2F6F9; --green:#56FF87; --blue:#259BFF;
-  --text:#0B1218; --muted:#5B6B79; --line:rgba(8,13,18,.12); --green-t:#0FB546;
-  --head:'Archivo Black','Arial Black',Impact,sans-serif;
-  --sub:'Space Grotesk','Inter',system-ui,sans-serif;
-  --body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --ease:cubic-bezier(.16,1,.3,1);
-  --pad:clamp(20px,5vw,72px);
-  --nav-h:72px;
+  --white:#FFFFFF; --alt:#F7FAF7; --green:#16A34A; --dark:#14532D;
+  --text:#111111; --muted:#666666; --border:#E5E7EB;
+  --head:"Space Grotesk","Archivo Black",Arial,Helvetica,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"Space Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --nav-h:68px;
+  --ease:cubic-bezier(.22,.8,.24,1);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;overflow-x:hidden;min-height:100vh}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-section{position:relative;scroll-margin-top:var(--nav-h)}
-:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
-.skip{position:absolute;left:-999px;top:8px;background:var(--green);color:#000;padding:8px 14px;z-index:200;font-weight:600}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--text);font-family:var(--body);font-size:1rem;line-height:1.6;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+section[id]{scroll-margin-top:var(--nav-h)}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--text);color:#fff;padding:.5rem 1rem;z-index:200}
 .skip:focus{left:8px}
-::selection{background:var(--green);color:#000}
+.wrap{width:min(1200px,100% - 2.5rem);margin-inline:auto}
+.label{font-family:var(--mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 1.25rem}
+.label b{color:var(--green);font-weight:700}
+h1,h2,h3{font-family:var(--head);text-transform:uppercase;letter-spacing:-.03em;line-height:.95;margin:0;font-weight:700}
+.accent{color:var(--green)}
+.rule{height:1px;background:var(--text);width:100%;transform-origin:left;margin:1.5rem 0}
 
-#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-main,footer,header{position:relative;z-index:2}
-.wrap{max-width:1360px;margin:0 auto;padding:0 var(--pad)}
+/* NAV */
+header.nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);height:var(--nav-h)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:100%;gap:1rem}
+.brand{font-family:var(--head);font-weight:700;letter-spacing:-.02em;text-decoration:none;font-size:1.15rem}
+.brand span{color:var(--green)}
+.menu{display:flex;align-items:center;gap:1.75rem}
+.menu ul{display:flex;gap:1.75rem;list-style:none;margin:0;padding:0}
+.menu a.lnk{font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-decoration:none;position:relative;padding:.4rem 0;display:inline-block}
+.menu a.lnk::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.menu a.lnk:hover::after,.menu a.lnk:focus-visible::after{transform:scaleX(1)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:.9rem 1.4rem;border:1px solid var(--text);background:var(--white);color:var(--text);transition:background .3s,color .3s,border-color .3s;min-height:44px;cursor:pointer}
+.btn .arr{display:inline-block;transition:transform .35s var(--ease)}
+.btn:hover .arr,.btn:focus-visible .arr{transform:translate(3px,-3px)}
+.btn.solid{background:var(--green);border-color:var(--green);color:#fff}
+.btn.solid:hover{background:var(--dark);border-color:var(--dark)}
+.btn:hover{border-color:var(--green);color:var(--green)}
+.btn.solid:hover{color:#fff}
+.burger{display:none;background:none;border:1px solid var(--border);width:44px;height:44px;cursor:pointer;padding:0;align-items:center;justify-content:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:var(--text);position:relative;transition:transform .3s,background .3s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
 
-/* cursor */
-.cursor{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1.5px solid var(--green);border-radius:50%;pointer-events:none;z-index:300;opacity:0;transition:opacity .3s,width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),background .3s,border-color .3s}
-.cursor.on{opacity:.9}
-.cursor.big{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(86,255,135,.15);border-color:var(--blue)}
+/* HERO */
+.hero{padding:clamp(2.5rem,6vw,5rem) 0 clamp(3rem,7vw,6rem)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center}
+.hero h1{font-size:clamp(2.8rem,8.2vw,7.2rem);margin-bottom:1.75rem}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .line>span{display:inline-block}
+.sub{max-width:34rem;color:var(--muted);font-size:clamp(1rem,1.6vw,1.15rem);margin:0 0 2rem}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem}
+.creeper{width:100%;max-width:440px;margin-inline:auto;aspect-ratio:360/560}
+.creeper svg{width:100%;height:100%}
+@keyframes up{from{transform:translateY(105%)}to{transform:none}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media (prefers-reduced-motion:no-preference){
+  html.anim .hero h1 .line>span{animation:up .9s var(--ease) both}
+  html.anim .hero h1 .line:nth-child(2)>span{animation-delay:.12s}
+  html.anim .hero h1 .line:nth-child(3)>span{animation-delay:.24s}
+  html.anim .hero .label,html.anim .hero .sub,html.anim .hero .btns{animation:fade .8s ease both;animation-delay:.45s}
+  html.anim .creeper svg{animation:bob 6s ease-in-out infinite}
+  html.anim .reveal{transition:opacity .75s var(--ease),transform .75s var(--ease)}
+  html.anim .reveal:not(.in){opacity:0;transform:translateY(16px)}
+  html.anim .rule.reveal{transition:transform .9s var(--ease)}
+  html.anim .rule.reveal:not(.in){opacity:1;transform:scaleX(0)}
+}
 
-/* nav */
-.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;transition:background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent}
-.nav.solid{background:rgba(255,255,255,.92);border-color:var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{font-family:var(--head);font-size:1.1rem;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
-.logo svg{width:26px;height:26px;flex:none}
-.logo b{background:linear-gradient(90deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
-.links{display:flex;align-items:center;gap:30px;list-style:none}
-.links a.nl{font-family:var(--sub);font-size:.82rem;font-weight:500;letter-spacing:.14em;color:var(--muted);position:relative;padding:6px 0;transition:color .3s}
-.links a.nl::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:linear-gradient(90deg,var(--green),var(--blue));transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
-.links a.nl:hover,.links a.nl.active{color:var(--text)}
-.links a.nl:hover::after,.links a.nl.active::after{transform:scaleX(1);transform-origin:left}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sub);font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;padding:15px 26px;min-height:48px;border-radius:999px;position:relative;overflow:hidden;transition:transform .3s var(--ease),color .3s,border-color .3s;will-change:transform;text-align:center}
-.btn.primary{background:linear-gradient(110deg,var(--green),var(--blue),var(--green));background-size:220% 100%;color:#04110a;animation:slide 6s linear infinite}
-.btn.primary:hover{box-shadow:0 8px 30px -8px rgba(37,155,255,.6)}
-.btn.ghost{border:1.5px solid var(--line);color:var(--text)}
-.btn.ghost:hover{border-color:var(--green-t);color:var(--green-t)}
-.btn.small{padding:11px 20px;min-height:42px;font-size:.74rem}
-.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed;animation:none;background:var(--bg2);color:var(--muted);border:1.5px dashed var(--line)}
-@keyframes slide{to{background-position:220% 0}}
-.burger{display:none;width:48px;height:48px;border-radius:12px;position:relative}
-.burger span{position:absolute;left:12px;right:12px;height:2px;background:var(--text);transition:transform .35s var(--ease),opacity .2s,top .35s var(--ease)}
-.burger span:nth-child(1){top:17px}.burger span:nth-child(2){top:23px}.burger span:nth-child(3){top:29px}
-.burger[aria-expanded="true"] span:nth-child(1){top:23px;transform:rotate(45deg)}
-.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
-.burger[aria-expanded="true"] span:nth-child(3){top:23px;transform:rotate(-45deg)}
+/* SECTIONS */
+section.s{padding:clamp(3.5rem,8vw,7rem) 0;border-top:1px solid var(--border)}
+section.alt{background:var(--alt)}
+.sec-head{margin-bottom:2.5rem}
+.sec-head h2{font-size:clamp(2.2rem,6vw,4.8rem)}
+.sec-head p.lead{color:var(--muted);max-width:36rem;margin:1rem 0 0}
 
-/* split text */
-.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
-.c{display:inline-block;transform:translateY(112%);letter-spacing:.14em;opacity:0;transition:transform 1s var(--ease),letter-spacing 1.2s var(--ease),opacity .6s;transition-delay:calc(var(--i,0)*70ms)}
-.in .c,.c.in{transform:none;letter-spacing:inherit;opacity:1}
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
-.reveal.in{opacity:1;transform:none}
-/* Reliability fix: content stays visible even when scroll observers fail or links jump to sections. */
-.reveal{opacity:1;transform:none}
-.sec [data-split] .c{opacity:1;transform:none;letter-spacing:inherit}
+/* FILTERS */
+.tools{display:flex;flex-direction:column;gap:1.25rem;margin-bottom:2rem}
+.search{width:100%;max-width:520px;font:inherit;font-size:1rem;padding:.9rem 1rem;border:1px solid var(--border);background:var(--white);border-radius:2px;min-height:48px}
+.search:focus{border-color:var(--green)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--border);background:var(--white);padding:.6rem .95rem;cursor:pointer;min-height:40px;transition:all .25s}
+.chip:hover{border-color:var(--green)}
+.chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
 
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.card{background:var(--white);border:1px solid var(--border);border-radius:2px;display:flex;flex-direction:column;transition:border-color .3s}
+.card:hover,.card:focus-within{border-color:var(--green)}
+.thumb{aspect-ratio:16/10;overflow:hidden;background:var(--alt);border-bottom:1px solid var(--border);position:relative}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.card:hover .thumb img{transform:scale(1.05)}
+.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--dark);background:repeating-linear-gradient(45deg,var(--alt),var(--alt) 10px,#EEF5EE 10px,#EEF5EE 11px);text-transform:uppercase;text-align:center;padding:1rem}
+.cbody{padding:1.4rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+.cat{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.card h3{font-size:1.4rem;letter-spacing:-.02em;line-height:1.1;text-transform:none;word-break:break-word}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.meta{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.06em}
+.note{font-family:var(--mono);font-size:.68rem;color:var(--dark);background:var(--alt);border:1px solid var(--border);padding:.35rem .5rem;align-self:flex-start}
+.card .btn{margin-top:auto;justify-content:space-between}
+.empty{grid-column:1/-1;text-align:center;padding:4rem 1rem;border:1px dashed var(--border)}
+.empty strong{font-family:var(--head);font-size:1.6rem;letter-spacing:-.02em;display:block}
+.empty span{color:var(--muted)}
 
-/* type */
-.h1,.h2{font-family:var(--head);text-transform:uppercase;line-height:.92;letter-spacing:-.01em}
-.h2{font-size:clamp(2.1rem,7.4vw,6.2rem)}
-.outline{color:transparent;-webkit-text-stroke:1.5px var(--text)}
-.grad{background:linear-gradient(100deg,var(--green),var(--blue),var(--green));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:slide 7s linear infinite}
-.eyebrow{font-family:var(--sub);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--green-t);display:flex;align-items:center;gap:12px;margin-bottom:22px}
-.eyebrow::before{content:"";width:36px;height:2px;background:linear-gradient(90deg,var(--green),var(--blue))}
-.lead{color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem);max-width:56ch}
+/* FEATURED */
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,5vw,4rem);align-items:center}
+.feat h2{font-size:clamp(2.4rem,7vw,5.6rem);margin-bottom:1.25rem}
+.feat p{color:var(--muted);max-width:30rem;margin:0 0 1.75rem}
+.feat .thumb{aspect-ratio:4/3;border:1px solid var(--border)}
 
-/* hero */
-.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:calc(var(--nav-h) + 40px) 0 90px;overflow:hidden}
-.hero .h1{font-size:clamp(2.3rem,10.4vw,10rem);margin:22px 0 30px}
-.hero .h1 .l1{display:block;color:var(--green-t)}
-.hero .h1 .l2{display:block;color:var(--blue)}
-.hero .h1 .l1 .c,.hero .h1 .l2 .c{transition-delay:calc(var(--i,0)*55ms + var(--ld,0ms))}
-.hero .h1 .l2{--ld:350ms}
-.hero .h1 .l1,.hero .h1 .l2{position:relative}
-.label{display:inline-flex;flex-direction:column;font-family:var(--sub);font-size:.74rem;letter-spacing:.22em;color:var(--muted);border-left:2px solid var(--green);padding-left:14px;line-height:1.5}
-.uline{display:block;height:3px;width:0;background:linear-gradient(90deg,var(--green),var(--blue));margin:0 0 28px;transition:width 1.4s var(--ease) .9s}
-.in .uline,.uline.in{width:min(260px,50%)}
-.hero .lead{margin-bottom:38px}
-.cta{display:flex;flex-wrap:wrap;gap:14px}
-.follow{position:absolute;pointer-events:none;z-index:0;will-change:transform}
-.follow.a{right:8%;top:20%;width:clamp(70px,12vw,160px);aspect-ratio:1;border:2px solid var(--green);opacity:.35;transform:rotate(12deg)}
-.follow.b{right:22%;bottom:16%;width:clamp(40px,7vw,90px);aspect-ratio:1;border-radius:50%;border:2px solid var(--blue);opacity:.45}
-.follow.c{right:4%;bottom:30%;width:clamp(26px,4vw,50px);aspect-ratio:1;background:linear-gradient(135deg,var(--green),var(--blue));opacity:.5;transform:rotate(45deg)}
-.hero .wrap{position:relative;z-index:1;width:100%}
-.scroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;font-family:var(--sub);font-size:.66rem;letter-spacing:.3em;color:var(--muted);z-index:2}
-.scroll i{width:1.5px;height:46px;background:var(--line);position:relative;overflow:hidden}
-.scroll i::after{content:"";position:absolute;left:0;top:-50%;width:100%;height:50%;background:var(--green);animation:drop 1.8s var(--ease) infinite}
-@keyframes drop{to{top:110%}}
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,5vw,4rem)}
+.about h2{font-size:clamp(2.4rem,6.5vw,5.4rem)}
+.about p{font-size:clamp(1.05rem,2vw,1.4rem);line-height:1.5;margin:0;max-width:34rem}
+.about p em{font-style:normal;color:var(--green)}
 
-/* marquee */
-.marquee{overflow:hidden;padding:30px 0;border-block:1px solid var(--line);background:rgba(242,246,249,.75);white-space:nowrap}
-.track{display:inline-flex;animation:marq 38s linear infinite;will-change:transform}
-.marquee:hover .track{animation-play-state:paused}
-.track span{font-family:var(--head);font-size:clamp(2.2rem,6vw,5rem);padding-right:.5em;text-transform:uppercase;color:transparent}
-.track span:nth-child(odd){-webkit-text-stroke:1.5px var(--green)}
-.track span:nth-child(even){-webkit-text-stroke:1.5px var(--blue)}
-@keyframes marq{to{transform:translateX(-50%)}}
+/* FAQ */
+.faq{max-width:860px}
+.faq details{border-top:1px solid var(--border)}
+.faq details:last-child{border-bottom:1px solid var(--border)}
+.faq summary{list-style:none;cursor:pointer;padding:1.3rem 0;display:flex;justify-content:space-between;gap:1rem;font-family:var(--head);font-size:clamp(1.1rem,2.4vw,1.5rem);letter-spacing:-.02em;min-height:44px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--green);font-size:1.5rem;transition:transform .3s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:hover{color:var(--green)}
+.faq .ans{padding:0 0 1.4rem;color:var(--muted);max-width:40rem}
 
-/* sections */
-.sec{padding:clamp(80px,12vw,160px) 0}
-.sec-head{margin-bottom:clamp(36px,5vw,64px)}
-.sec-head .lead{margin-top:24px}
+/* CONTACT */
+.contact h2{font-size:clamp(2.8rem,9vw,7.5rem);margin-bottom:1.5rem}
+.contact p{color:var(--muted);max-width:34rem;margin:0 0 2rem}
+.contact .rows{display:grid;gap:.35rem;margin:0 0 2rem;font-family:var(--mono);font-size:.82rem}
+.contact .rows a{text-decoration:none;border-bottom:1px solid var(--green);width:fit-content;word-break:break-all}
 
-/* library */
-.tools{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-bottom:34px}
-.filters{display:flex;flex-wrap:wrap;gap:10px}
-.chip{font-family:var(--sub);font-weight:500;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;padding:11px 18px;min-height:44px;border:1.5px solid var(--line);border-radius:999px;color:var(--muted);transition:all .3s var(--ease)}
-.chip:hover{color:var(--text);border-color:var(--muted)}
-.chip[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
-.search{position:relative;flex:1 1 260px;max-width:380px}
-.search input{width:100%;min-height:48px;background:var(--bg2);border:1.5px solid var(--line);border-radius:999px;color:var(--text);padding:0 20px 0 48px;font:inherit;font-size:.95rem;transition:border-color .3s}
-.search input::placeholder{color:var(--muted)}
-.search input:focus{outline:none;border-color:var(--green)}
-.search svg{position:absolute;left:18px;top:50%;width:18px;height:18px;transform:translateY(-50%);stroke:var(--muted);fill:none;stroke-width:2}
-.count{font-family:var(--sub);font-size:.78rem;letter-spacing:.14em;color:var(--muted);margin-bottom:22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:24px}
-.card{background:var(--bg2);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s var(--ease),border-color .4s,box-shadow .5s;transform-style:preserve-3d}
-.card:hover{border-color:rgba(86,255,135,.45);box-shadow:0 24px 50px -24px rgba(37,155,255,.35)}
-.thumb{aspect-ratio:16/10;overflow:hidden;position:relative;background:#eef3f6}
-.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
-.card:hover .thumb img{transform:scale(1.08)}
-.badge{font-family:var(--sub);font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px;display:inline-block}
-.badge.cat{position:absolute;left:14px;top:14px;background:rgba(255,255,255,.92);color:var(--green-t);border:1px solid rgba(15,181,70,.5)}
-.badge.ver{background:rgba(37,155,255,.12);color:var(--blue);border:1px solid rgba(37,155,255,.4)}
-.cbody{padding:22px;display:flex;flex-direction:column;gap:12px;flex:1}
-.cbody h3{font-family:var(--head);font-size:1.4rem;line-height:1.05;text-transform:uppercase;letter-spacing:-.005em}
-.cbody p{color:var(--muted);font-size:.95rem;flex:1}
-.cfoot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:6px}
-.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);border:1.5px dashed var(--line);border-radius:20px;font-family:var(--sub)}
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:3rem 0 2rem;background:var(--white)}
+.foot{display:grid;grid-template-columns:1fr auto;gap:2rem}
+.foot nav{display:flex;flex-wrap:wrap;gap:1.25rem}
+.foot nav a,.foot .links a{font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-decoration:none}
+.foot a:hover{color:var(--green)}
+.foot .links{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem}
+.copy{margin-top:2.5rem;padding-top:1.25rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.72rem;color:var(--muted);gap:1rem;flex-wrap:wrap}
 
-/* featured */
-.feat{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
-.feat .h2{font-size:clamp(2.1rem,6.6vw,5.6rem);margin-bottom:26px}
-.feat h3{font-family:var(--head);font-size:clamp(1.4rem,3vw,2.4rem);text-transform:uppercase;line-height:1;margin-bottom:16px}
-.badges{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 28px}
-.badge.cat.flat{position:static}
-.frame{position:relative;aspect-ratio:4/3;border-radius:24px;overflow:visible}
-.frame .shot{position:absolute;inset:0;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--bg2);z-index:2}
-.frame .shot img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
-.frame:hover .shot img{transform:scale(1.06)}
-.spin{position:absolute;z-index:1;pointer-events:none}
-.spin.s1{width:62%;aspect-ratio:1;border:2px solid var(--green);right:-9%;top:-12%;animation:rot 28s linear infinite;opacity:.55}
-.spin.s2{width:40%;aspect-ratio:1;border:2px solid var(--blue);left:-8%;bottom:-10%;border-radius:50%;animation:rot 22s linear infinite reverse;opacity:.6}
-.spin.s3{width:90px;aspect-ratio:1;background:linear-gradient(135deg,var(--green),var(--blue));left:12%;top:-6%;animation:float 6s ease-in-out infinite;opacity:.8;z-index:3;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
-@keyframes rot{to{transform:rotate(360deg)}}
-@keyframes float{50%{transform:translateY(-18px) rotate(12deg)}}
-
-/* about */
-.about{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(30px,6vw,100px);align-items:start}
-.bigtype{font-family:var(--head);text-transform:uppercase;font-size:clamp(2.6rem,8.5vw,7.4rem);line-height:.95;position:sticky;top:110px}
-.bigtype span{display:block}
-.bigtype span:nth-child(1){color:var(--green-t)}
-.bigtype span:nth-child(2){color:transparent;-webkit-text-stroke:1.5px var(--text)}
-.bigtype span:nth-child(3){color:var(--blue)}
-.prose p{color:var(--muted);font-size:clamp(1rem,1.4vw,1.15rem);margin-bottom:1.3em;max-width:62ch}
-.prose p:first-child{color:var(--text);font-size:clamp(1.15rem,1.9vw,1.5rem);font-family:var(--sub);line-height:1.5}
-.deco{position:absolute;pointer-events:none;z-index:0}
-.deco.d1{right:6%;top:10%;width:90px;aspect-ratio:1;border:2px solid var(--green);animation:rot 30s linear infinite;opacity:.4}
-.deco.d2{left:3%;bottom:8%;width:60px;aspect-ratio:1;border-radius:50%;border:2px solid var(--blue);animation:float 7s ease-in-out infinite;opacity:.5}
-.deco.d3{right:14%;bottom:12%;width:40px;aspect-ratio:1;background:var(--green);opacity:.3;animation:float 5s ease-in-out infinite .6s}
-.deco.d4{left:44%;top:6%;width:34px;aspect-ratio:1;background:var(--blue);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);opacity:.5;animation:float 8s ease-in-out infinite}
-.about>*,.sec>.wrap{position:relative;z-index:1}
-
-/* why */
-.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;perspective:1000px}
-.feature{position:relative;padding:36px 30px 40px;background:var(--bg2);border-radius:22px;min-height:280px;display:flex;flex-direction:column;gap:16px;transition:transform .4s var(--ease);transform-style:preserve-3d;will-change:transform}
-.feature::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:linear-gradient(120deg,var(--green),var(--blue),var(--green),var(--blue));background-size:300% 300%;animation:bshift 6s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask-composite:exclude;opacity:.55;pointer-events:none}
-@keyframes bshift{to{background-position:300% 300%}}
-.feature .num{font-family:var(--head);font-size:3.4rem;color:transparent;-webkit-text-stroke:1.5px var(--green);line-height:1;transform:translateZ(30px)}
-.feature:nth-child(2) .num{-webkit-text-stroke-color:var(--blue)}
-.feature h3{font-family:var(--head);font-size:1.5rem;text-transform:uppercase;line-height:1.05;transform:translateZ(20px)}
-.feature p{color:var(--muted)}
-
-/* faq */
-.faq{max-width:940px}
-.item{border-bottom:1px solid var(--line)}
-.q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;padding:28px 0;font-family:var(--sub);font-weight:500;font-size:clamp(1.05rem,2vw,1.45rem);min-height:60px;transition:color .3s}
-.q:hover{color:var(--green-t)}
-.plus{flex:none;width:34px;height:34px;border:1.5px solid var(--line);border-radius:50%;position:relative;transition:transform .5s var(--ease),background .3s,border-color .3s}
-.plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:currentColor;transform:translate(-50%,-50%)}
-.plus::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .5s var(--ease)}
-.q[aria-expanded="true"] .plus{transform:rotate(180deg);background:var(--green);border-color:var(--green);color:#04110a}
-.q[aria-expanded="true"] .plus::after{transform:translate(-50%,-50%) rotate(0)}
-.a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
-.a>div{overflow:hidden}
-.a p{color:var(--muted);padding:0 0 28px;max-width:64ch}
-.q[aria-expanded="true"]+.a{grid-template-rows:1fr}
-
-/* contact */
-.contact{text-align:center}
-.contact .h2{font-size:clamp(2.3rem,9vw,8rem)}
-.contact .lead{margin:26px auto 40px}
-.clinks{display:flex;flex-wrap:wrap;gap:14px 36px;justify-content:center}
-.ulink{font-family:var(--head);font-size:clamp(1.4rem,3.6vw,2.6rem);text-transform:uppercase;position:relative;padding:6px 0;display:inline-block;transition:color .3s}
-.ulink::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:linear-gradient(90deg,var(--green),var(--blue));transform:scaleX(.18);transform-origin:left;transition:transform .6s var(--ease)}
-.ulink:hover::after,.ulink:focus-visible::after{transform:scaleX(1)}
-.ulink:hover{color:var(--green-t)}
-.ulink[aria-disabled="true"]{color:var(--muted);cursor:not-allowed}
-.ulink[aria-disabled="true"]:hover::after{transform:scaleX(.18)}
-.note{margin-top:22px;font-size:.82rem;color:var(--muted);min-height:1.4em;font-family:var(--sub)}
-
-/* footer */
-footer{overflow:hidden;border-top:1px solid var(--line);background:rgba(255,255,255,.7);padding-top:60px}
-.fbig{font-family:var(--head);font-size:clamp(2.4rem,14.4vw,15rem);line-height:.82;text-align:center;color:transparent;-webkit-text-stroke:1.5px rgba(8,13,18,.16);user-select:none;white-space:nowrap;letter-spacing:-.02em;margin-top:30px;padding-bottom:.04em}
-.frow{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start}
-.frow p.tag{font-family:var(--sub);font-size:1.15rem;max-width:26ch}
-.flinks{display:flex;flex-wrap:wrap;gap:8px 26px;list-style:none}
-.flinks a{font-family:var(--sub);font-size:.8rem;letter-spacing:.16em;color:var(--muted);transition:color .3s;padding:8px 0;display:inline-block}
-.flinks a:hover{color:var(--green-t)}
-.legal{border-top:1px solid var(--line);margin-top:40px;padding:24px 0 34px;display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;color:var(--muted);font-size:.8rem}
-
-/* responsive */
+/* RESPONSIVE */
 @media (max-width:980px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:820px){
+  .burger{display:inline-flex}
+  .menu{position:absolute;top:var(--nav-h);left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);flex-direction:column;align-items:stretch;gap:0;padding:0 1.25rem;max-height:0;overflow:hidden;visibility:hidden;transition:max-height .4s var(--ease),padding .4s,visibility .4s}
+  .menu.open{max-height:480px;padding:1rem 1.25rem 1.5rem;visibility:visible}
+  .menu ul{flex-direction:column;gap:0}
+  .menu a.lnk{display:block;padding:.9rem 0;border-bottom:1px solid var(--border);width:100%}
+  .menu .btn{margin-top:1rem;justify-content:center}
+  .hero .wrap{grid-template-columns:1fr}
+  .creeper{max-width:300px;margin-top:1rem}
   .feat,.about{grid-template-columns:1fr}
-  .bigtype{position:static}
-  .cards3{grid-template-columns:1fr}
-  .feature{min-height:0}
 }
-@media (max-width:860px){
-  .burger{display:block}
-  .links{position:fixed;inset:var(--nav-h) 0 auto 0;flex-direction:column;align-items:stretch;gap:0;background:rgba(255,255,255,.98);padding:10px var(--pad) 28px;border-bottom:1px solid var(--line);transform:translateY(-14px);opacity:0;visibility:hidden;transition:transform .45s var(--ease),opacity .3s,visibility .3s;max-height:calc(100vh - var(--nav-h));overflow:auto}
-  .links.open{transform:none;opacity:1;visibility:visible}
-  .links li{border-bottom:1px solid var(--line)}
-  .links a.nl{display:block;padding:18px 0;font-size:1rem}
-  .links a.nl::after{display:none}
-  .links li.cta-li{border:0;padding-top:20px}
-  .links li.cta-li .btn{width:100%}
-}
-@media (max-width:560px){
-  .btn{width:100%}
-  .cta{flex-direction:column}
-  .cfoot .btn{width:auto;flex:1}
-  .outline,.track span:nth-child(n){-webkit-text-stroke-width:1px}
-  .follow.a{right:-6%}
-  .scroll{display:none}
-  .hero{padding-bottom:60px}
+@media (max-width:620px){
+  .grid{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  .btns .btn{flex:1 1 100%;justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important;scroll-behavior:auto!important}
-  .c,.reveal{opacity:1!important;transform:none!important;letter-spacing:inherit!important}
-  .track{animation:none!important}
-  .marquee{overflow-x:auto}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
 }
 </style>
 </head>
 <body>
-<a class="skip" href="#mods">Skip to mods</a>
-<canvas id="bg" aria-hidden="true"></canvas>
-<div class="cursor" id="cursor" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
 
-<header class="nav" id="nav">
+<header class="nav" id="home-top">
   <div class="wrap">
-    <a href="#home" class="logo" aria-label="G-TechMods home">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3l11.5 6.5v13L16 29 4.5 22.500v-13z" fill="none" stroke="#56FF87" stroke-width="2"/><path d="M4.500 9.500L16 16l11.500-6.500M16 16v13" fill="none" stroke="#259BFF" stroke-width="2"/></svg>
-      <b>G-TECHMODS</b>
-    </a>
-    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
-    <ul class="links" id="menu">
-      <li><a class="nl" href="#home">HOME</a></li>
-      <li><a class="nl" href="#mods">MODS</a></li>
-      <li><a class="nl" href="#about">ABOUT</a></li>
-      <li><a class="nl" href="#faq">FAQ</a></li>
-      <li><a class="nl" href="#contact">CONTACT</a></li>
-      <li class="cta-li"><a class="btn primary small magnetic" href="#mods">EXPLORE MODS ↗</a></li>
-    </ul>
+    <a class="brand" href="#home" aria-label="G-TechMods home">G-TECH<span>MODS</span></a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu"><span></span></button>
+    <div class="menu" id="menu">
+      <ul>
+        <li><a class="lnk" href="#home">HOME</a></li>
+        <li><a class="lnk" href="#mods">MODS</a></li>
+        <li><a class="lnk" href="#about">ABOUT</a></li>
+        <li><a class="lnk" href="#faq">FAQ</a></li>
+        <li><a class="lnk" href="#contact">CONTACT</a></li>
+      </ul>
+      <a class="btn solid" href="#mods">EXPLORE MODS <span class="arr" aria-hidden="true">â†—</span></a>
+    </div>
   </div>
 </header>
 
-<main id="top">
-  <!-- HERO -->
-  <section class="hero" id="home" aria-labelledby="hero-title">
-    <span class="follow a" data-depth="40"></span>
-    <span class="follow b" data-depth="-60"></span>
-    <span class="follow c" data-depth="90"></span>
-    <div class="wrap">
-      <p class="label"><span>INDEPENDENT MINECRAFT CREATOR</span><span>&amp; MOD DEVELOPER</span></p>
-      <h1 class="h1" id="hero-title" aria-label="Minecraft. Reimagined.">
-        <span class="l1" data-split aria-hidden="true">MINECRAFT.</span>
-        <span class="l2" data-split aria-hidden="true">REIMAGINED.</span>
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <p class="label"><b>G-TECHMODS</b> / MOD LIBRARY</p>
+      <h1 aria-label="Minecraft Mods. Reimagined.">
+        <span class="line" aria-hidden="true"><span>MINECRAFT</span></span>
+        <span class="line" aria-hidden="true"><span class="accent">MODS.</span></span>
+        <span class="line" aria-hidden="true"><span>REIMAGINED.</span></span>
       </h1>
-      <i class="uline"></i>
-      <p class="lead">Discover custom Minecraft mods, unique creatures, exciting experiments, and new adventures — created by G-TechMods.</p>
-      <div class="cta">
-        <a class="btn primary magnetic" href="#mods">EXPLORE MODS ↗</a>
-        <a class="btn ghost magnetic" href="#about">ABOUT G-TECHMODS</a>
+      <p class="sub">Discover unique Minecraft mods, immersive horror experiences, custom creatures, and exciting addons.</p>
+      <div class="btns">
+        <a class="btn solid" href="#mods">EXPLORE MODS <span class="arr" aria-hidden="true">â†—</span></a>
+        <a class="btn" href="#about">ABOUT US</a>
       </div>
     </div>
-    <div class="scroll" aria-hidden="true"><span>SCROLL</span><i></i></div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
-
-  <!-- MODS -->
-  <section class="sec" id="mods" aria-labelledby="mods-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow reveal">Download Library</p>
-        <h2 class="h2" id="mods-title" data-split>EXPLORE THE <span class="outline">MODS.</span></h2>
-        <p class="lead reveal">Discover unique Minecraft experiences, custom mobs, exciting addons, and more.</p>
-      </div>
-      <div class="tools reveal">
-        <div class="filters" id="filters" role="group" aria-label="Filter mods by category"></div>
-        <div class="search">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.500-3.500"/></svg>
-          <input id="search" type="search" placeholder="Search mods…" aria-label="Search mods" autocomplete="off">
-        </div>
-      </div>
-      <p class="count" id="count" aria-live="polite"></p>
-      <div class="grid" id="grid"></div>
+    <div class="creeper">
+      <svg viewBox="0 0 360 560" role="img" aria-labelledby="ct">
+        <title id="ct">Hand-sketched pencil and ink drawing of a Minecraft Creeper, full body, with green crosshatching</title>
+        <defs>
+          <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7" result="n"/>
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="4"/>
+          </filter>
+          <pattern id="h1" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="7" stroke="#14532D" stroke-width="1.1"/></pattern>
+          <pattern id="h2" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-42)"><line x1="0" y1="0" x2="0" y2="6" stroke="#111" stroke-width="1"/></pattern>
+        </defs>
+        <g filter="url(#rough)" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="180" cy="548" rx="105" ry="8" fill="url(#h2)" opacity=".55"/>
+          <!-- base green wash -->
+          <g fill="#16A34A" opacity=".2">
+            <rect x="100" y="20" width="160" height="160"/>
+            <rect x="100" y="180" width="160" height="240"/>
+            <rect x="100" y="420" width="78" height="120"/>
+            <rect x="182" y="420" width="78" height="120"/>
+          </g>
+          <!-- crosshatch -->
+          <g fill="url(#h1)" opacity=".6">
+            <rect x="100" y="20" width="160" height="160"/>
+            <rect x="100" y="180" width="160" height="240"/>
+            <rect x="100" y="420" width="78" height="120"/>
+            <rect x="182" y="420" width="78" height="120"/>
+          </g>
+          <!-- pixel blotches -->
+          <g fill="url(#h2)" opacity=".55">
+            <rect x="100" y="20" width="40" height="40"/><rect x="180" y="40" width="40" height="20"/>
+            <rect x="220" y="140" width="40" height="40"/><rect x="120" y="160" width="40" height="20"/>
+            <rect x="100" y="220" width="40" height="60"/><rect x="200" y="250" width="60" height="40"/>
+            <rect x="140" y="340" width="60" height="40"/><rect x="220" y="360" width="40" height="60"/>
+            <rect x="100" y="460" width="40" height="40"/><rect x="220" y="440" width="40" height="60"/>
+          </g>
+          <!-- faint pixel grid -->
+          <g stroke="#14532D" stroke-width=".7" opacity=".35" fill="none">
+            <path d="M140 20V180M180 20V180M220 20V180M100 60H260M100 100H260M100 140H260"/>
+            <path d="M140 180V420M180 180V420M220 180V420M100 240H260M100 300H260M100 360H260"/>
+          </g>
+          <!-- face -->
+          <g fill="#111">
+            <rect x="120" y="60" width="40" height="40"/>
+            <rect x="200" y="60" width="40" height="40"/>
+            <rect x="160" y="100" width="40" height="20"/>
+            <rect x="140" y="120" width="80" height="20"/>
+            <rect x="140" y="140" width="20" height="20"/>
+            <rect x="200" y="140" width="20" height="20"/>
+          </g>
+          <!-- ink outlines (double stroke for sketch feel) -->
+          <g fill="none" stroke="#111">
+            <g stroke-width="3">
+              <path d="M100 20H260V180H100Z"/>
+              <path d="M100 180H260V420H100Z"/>
+              <path d="M100 420H178V540H100Z"/>
+              <path d="M182 420H260V540H182Z"/>
+            </g>
+            <g stroke-width="1.2" opacity=".7">
+              <path d="M97 23L262 18L258 183L103 177Z"/>
+              <path d="M98 183L262 178V423L97 419Z"/>
+              <path d="M98 423L180 418L176 543L103 538Z"/>
+              <path d="M180 424L262 418L258 541L184 543Z"/>
+            </g>
+          </g>
+        </g>
+      </svg>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FEATURED -->
-  <section class="sec" id="featured" aria-labelledby="feat-title" style="overflow:hidden">
-    <div class="wrap">
-      <div class="feat">
-        <div>
-          <p class="eyebrow reveal">Spotlight</p>
-          <h2 class="h2" id="feat-title" data-split>FEATURED <span class="grad">CREATION.</span></h2>
-          <h3 class="reveal" id="f-title"></h3>
-          <p class="lead reveal" id="f-desc"></p>
-          <div class="badges reveal" id="f-badges"></div>
-          <div class="reveal" id="f-btn"></div>
-        </div>
-        <div class="frame reveal" id="f-frame">
-          <span class="spin s1"></span><span class="spin s2"></span><span class="spin s3"></span>
-          <div class="shot"><img id="f-img" alt="" width="800" height="600" loading="lazy"></div>
-        </div>
-      </div>
+<!-- MODS -->
+<section class="s" id="mods">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label reveal">01 / LIBRARY</p>
+      <h2 class="reveal">EXPLORE THE MODS.</h2>
+      <div class="rule reveal"></div>
+      <p class="lead reveal">Discover unique Minecraft experiences, custom mobs, and exciting addons.</p>
     </div>
-  </section>
+    <div class="tools">
+      <label class="label" for="search" style="margin:0">SEARCH</label>
+      <input class="search" id="search" type="search" placeholder="Search Minecraft mods..." autocomplete="off" aria-controls="grid">
+      <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+    </div>
+    <p class="label" id="count" aria-live="polite" style="margin-bottom:1rem"></p>
+    <div class="grid" id="grid">
+      <noscript>
+        <article class="card">
+          <div class="thumb"><img src="https://g-techmods.github.io/minecraft-mods/Neon%20Minecraft%20AI%20Setup%20Window.png" alt="Neon Minecraft AI setup window"></div>
+          <div class="cbody">
+            <span class="cat">Configuration</span>
+            <h3>Configure Groq AI.cmd</h3>
+            <p>Configure Groq AI integration for The Caged One Minecraft Mod using this simple setup file.</p>
+            <span class="meta">VERSION: All</span>
+            <span class="note">Windows command script / configuration utility</span>
+            <a class="btn" href="https://github.com/G-TechMods/minecraft-mods/releases/download/v1.0.0/Configure_Groq_AI.cmd" rel="noopener noreferrer">DOWNLOAD â†—</a>
+          </div>
+        </article>
+      </noscript>
+    </div>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section class="sec" id="about" aria-labelledby="about-title">
-    <span class="deco d1"></span><span class="deco d2"></span><span class="deco d3"></span><span class="deco d4"></span>
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow reveal">About</p>
-        <h2 class="h2" id="about-title" data-split>BEHIND THE <span class="outline">BLOCKS.</span></h2>
-      </div>
-      <div class="about">
-        <div class="bigtype" aria-hidden="true"><span data-split>CREATE.</span><span data-split>MODIFY.</span><span data-split>EXPLORE.</span></div>
-        <div class="prose">
-          <p class="reveal">Welcome to G-TechMods — a creative space dedicated to Minecraft mods, custom creations, and unique gameplay experiences.</p>
-          <p class="reveal">G-TechMods is an independent Minecraft content creator and mod developer with a passion for exploring new ideas and bringing exciting concepts into the Minecraft universe.</p>
-          <p class="reveal">From custom mobs and experimental addons to creative challenges and new gameplay features, our goal is to make Minecraft more exciting, surprising, and fun.</p>
-          <p class="reveal">Every creation is inspired by curiosity, creativity, and a love for Minecraft.</p>
-          <p class="reveal">Through our YouTube content, we share Minecraft experiments, myths, custom mobs, new updates, mod showcases, and unique gaming experiences.</p>
-          <p class="reveal">This website is our official home for sharing downloadable Minecraft creations with the community.</p>
-          <p class="reveal">Explore our creations, discover something new, and take your Minecraft adventures to the next level.</p>
-        </div>
-      </div>
+<!-- FEATURED -->
+<section class="s alt" id="featured" aria-labelledby="feat-h">
+  <div class="wrap feat">
+    <div>
+      <p class="label reveal">FEATURED DOWNLOAD</p>
+      <h2 id="feat-h" class="reveal">THE CAGED ONE.</h2>
+      <p class="reveal">Enhance your Minecraft horror experience with AI configuration support.</p>
+      <p class="meta reveal" style="margin-top:-1rem;margin-bottom:1.5rem">Windows .cmd setup script, not a mod archive.</p>
+      <a class="btn solid" id="feat-dl" href="https://github.com/G-TechMods/minecraft-mods/releases/download/v1.0.0/Configure_Groq_AI.cmd" rel="noopener noreferrer">DOWNLOAD CONFIGURATION <span class="arr" aria-hidden="true">â†—</span></a>
     </div>
-  </section>
+    <div class="thumb" id="feat-img">
+      <img src="https://g-techmods.github.io/minecraft-mods/Neon%20Minecraft%20AI%20Setup%20Window.png" alt="Neon-styled Minecraft AI setup window for The Caged One" loading="lazy" width="800" height="600">
+    </div>
+  </div>
+</section>
 
-  <!-- WHY -->
-  <section class="sec" id="why" aria-labelledby="why-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow reveal">Why us</p>
-        <h2 class="h2" id="why-title" data-split>BUILT FOR <span class="grad">CREATIVITY.</span></h2>
-      </div>
-      <div class="cards3">
-        <article class="feature tilt reveal" style="--d:0ms"><span class="num">01</span><h3>CUSTOM CREATIONS</h3><p>Discover unique Minecraft mods and custom gameplay experiences.</p></article>
-        <article class="feature tilt reveal" style="--d:120ms"><span class="num">02</span><h3>NEW ADVENTURES</h3><p>Explore exciting creatures, experiments, and unexpected challenges.</p></article>
-        <article class="feature tilt reveal" style="--d:240ms"><span class="num">03</span><h3>EASY DOWNLOADS</h3><p>Find and download Minecraft creations directly from our official website.</p></article>
-      </div>
+<!-- ABOUT -->
+<section class="s" id="about">
+  <div class="wrap about">
+    <div>
+      <p class="label reveal">02 / ABOUT</p>
+      <h2 class="reveal">BUILT FOR EXPLORERS.</h2>
     </div>
-  </section>
+    <div>
+      <div class="rule reveal" style="margin-top:0"></div>
+      <p class="reveal">G-TechMods is a creative <em>Minecraft mod library</em> dedicated to unique experiences, custom content, horror adventures, and exciting gameplay additions.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- FAQ -->
-  <section class="sec" id="faq" aria-labelledby="faq-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow reveal">FAQ</p>
-        <h2 class="h2" id="faq-title" data-split>FREQUENTLY ASKED <span class="outline">QUESTIONS.</span></h2>
-      </div>
-      <div class="faq" id="faqlist"></div>
+<!-- FAQ -->
+<section class="s alt" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label reveal">03 / FAQ</p>
+      <h2 class="reveal">QUESTIONS.</h2>
+      <div class="rule reveal"></div>
     </div>
-  </section>
+    <div class="faq">
+      <details><summary>Are the mods free?</summary><div class="ans">Yes, downloads listed on G-TechMods are free.</div></details>
+      <details><summary>How do I download a mod?</summary><div class="ans">Find a mod, click its download button, and follow any installation instructions.</div></details>
+      <details><summary>Do I need an account?</summary><div class="ans">No account is required to access the downloads.</div></details>
+      <details><summary>Are the mods compatible with every Minecraft version?</summary><div class="ans">Compatibility depends on the individual mod. Check its listed version before downloading.</div></details>
+      <details><summary>How can I find new mods?</summary><div class="ans">Visit the website regularly to explore newly added Minecraft content.</div></details>
+    </div>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section class="sec contact" id="contact" aria-labelledby="contact-title">
-    <div class="wrap">
-      <p class="eyebrow reveal" style="justify-content:center">Contact</p>
-      <h2 class="h2" id="contact-title" data-split>LET'S <span class="grad">CONNECT.</span></h2>
-      <p class="lead reveal">Have a suggestion, question, or creative idea? Connect with G-TechMods.</p>
-      <div class="clinks reveal">
-        <a class="ulink" id="yt" href="#contact">YOUTUBE ↗</a>
-        <a class="ulink" id="mail" href="#contact">EMAIL ↗</a>
-      </div>
-      <p class="note" id="cnote" role="status"></p>
+<!-- CONTACT -->
+<section class="s contact" id="contact">
+  <div class="wrap">
+    <p class="label reveal">04 / CONTACT</p>
+    <h2 class="reveal">LET'S<br><span class="accent">CONNECT.</span></h2>
+    <div class="rule reveal"></div>
+    <p class="reveal">Have questions about Minecraft mods? Connect with G-TechMods through email or visit our YouTube channel.</p>
+    <div class="rows">
+      <a href="mailto:woke52239@gmail.com">woke52239@gmail.com</a>
+      <a href="https://youtube.com/@g-techmc?si=wulig39D5d5MpDQe" target="_blank" rel="noopener noreferrer">youtube.com/@g-techmc</a>
     </div>
-  </section>
+    <div class="btns">
+      <a class="btn solid" href="mailto:woke52239@gmail.com">SEND AN EMAIL <span class="arr" aria-hidden="true">â†—</span></a>
+      <a class="btn" href="https://youtube.com/@g-techmc?si=wulig39D5d5MpDQe" target="_blank" rel="noopener noreferrer">VISIT YOUTUBE <span class="arr" aria-hidden="true">â†—</span></a>
+    </div>
+  </div>
+</section>
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="frow">
-      <p class="tag">Made for Minecraft creators and adventurers.</p>
-      <ul class="flinks">
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#mods">MODS</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-      </ul>
+    <div class="foot">
+      <div>
+        <a class="brand" href="#home">G-TECH<span>MODS</span></a>
+        <div class="links">
+          <a href="mailto:woke52239@gmail.com">woke52239@gmail.com</a>
+          <a href="https://youtube.com/@g-techmc?si=wulig39D5d5MpDQe" target="_blank" rel="noopener noreferrer">YouTube: @g-techmc</a>
+        </div>
+      </div>
+      <nav aria-label="Footer">
+        <a href="#home">HOME</a><a href="#mods">MODS</a><a href="#about">ABOUT</a><a href="#faq">FAQ</a><a href="#contact">CONTACT</a>
+      </nav>
     </div>
-    <div class="fbig" aria-hidden="true">G-TECHMODS</div>
-    <div class="legal">
-      <span>© 2026 G-TechMods. All Rights Reserved.</span>
-      <span>Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.</span>
+    <div class="copy">
+      <span>Â© 2026 G-TechMods. All rights reserved.</span>
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="1" y="1" width="16" height="16" fill="none" stroke="#16A34A" stroke-width="1.5"/><rect x="5" y="5" width="3" height="3" fill="#16A34A"/><rect x="10" y="5" width="3" height="3" fill="#16A34A"/><rect x="7" y="9" width="4" height="4" fill="#16A34A"/></svg>
     </div>
   </div>
 </footer>
 
-<noscript><p style="position:relative;z-index:5;padding:20px;text-align:center;background:#F2F6F9">Please enable JavaScript to browse and download mods.</p></noscript>
-
 <script>
-/* =====================================================================
-   CONFIGURATION — EDIT THIS SECTION TO MANAGE YOUR SITE
-   ===================================================================== */
-const CONFIG = {
-  // 6. Contact links (leave "" until you have them; buttons show as "not set yet")
-  youtubeUrl: "https://youtube.com/@g-techmc?si=wulig39D5d5MpDQe",            // e.g. "https://www.youtube.com/@YourChannel"
-  email: "woke52239@gmail.com",                 // e.g. "you@example.com"
-
-  // Which mod to show in "Featured Creation" (must match a mod title exactly).
-  // If empty or not found, the first mod is used.
-  featuredTitle: "Mutant Creatures",
-
-  comingSoonText: "COMING SOON"
-};
-
-/* Categories shown as filter buttons. "ALL MODS" is added automatically. */
-const CATEGORIES = ["Horror", "Mobs", "Adventure", "Experiments", "Addons"];
-
-/* 1-5. MODS LIST
-   To ADD a mod: copy one block, paste it, and edit the fields.
-   title       -> mod name
-   category    -> one of CATEGORIES above
-   version     -> Minecraft version, e.g. "1.21.1"
-   description -> short text shown on the card
-   image       -> thumbnail URL or relative path (e.g. "images/mod.png").
-                  Leave "" to use an auto-generated placeholder.
-   download    -> real file link (Google Drive public link, Modrinth,
-                  CurseForge, GitHub release, etc.). Leave "" to show COMING SOON.
-   The entries below are SAMPLES — replace them with your real mods.
-*/
+/* ============================================================
+   MOD DATA â€” ADD NEW MODS HERE.
+   Copy an object, add a comma after the previous one, edit the fields.
+   Categories you add appear automatically as filter buttons.
+   ============================================================ */
 const MODS = [
   {
-    title: "Configure_Groq_AI.cmd",
+    title: "Configure Groq AI.cmd",
     category: "Configuration",
     version: "All",
     description: "Configure Groq AI integration for The Caged One Minecraft Mod using this simple setup file.",
-    image: "https://raw.githubusercontent.com/G-TechMods/minecraft-mods/main/Neon%20Minecraft%20AI%20Setup%20Window.png",
+    image: "https://g-techmods.github.io/minecraft-mods/Neon%20Minecraft%20AI%20Setup%20Window.png",
     download: "https://github.com/G-TechMods/minecraft-mods/releases/download/v1.0.0/Configure_Groq_AI.cmd"
-  },
-  {
-    title: "Sample Horror Mod",
-    category: "Horror",
-    version: "1.20.1",
-    description: "Replace this sample with your own horror creation and description.",
-    image: "",
-    download: ""
-  },
-  {
-    title: "Sample Adventure Mod",
-    category: "Adventure",
-    version: "1.21.1",
-    description: "Replace this sample with your own adventure mod and description.",
-    image: "",
-    download: ""
-  },
-  {
-    title: "Sample Experiment",
-    category: "Experiments",
-    version: "1.21.1",
-    description: "Replace this sample with one of your experimental ideas.",
-    image: "",
-    download: ""
-  },
-  {
-    title: "Sample Addon",
-    category: "Addons",
-    version: "1.20.1",
-    description: "Replace this sample with your own addon and description.",
-    image: "",
-    download: ""
   }
 ];
-/* ===================== END OF CONFIGURATION ===================== */
 
-(function(){
-"use strict";
+(function () {
+  "use strict";
+  var BASE_FILTERS = ["Horror", "Mobs", "Adventure", "Experiments", "Addons", "Configuration"];
+  var grid = document.getElementById("grid");
+  var chipsEl = document.getElementById("chips");
+  var searchEl = document.getElementById("search");
+  var countEl = document.getElementById("count");
+  var state = { q: "", cat: "ALL" };
 
-var $ = function(s,r){return (r||document).querySelector(s)};
-var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
-var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-var mouse = {x:innerWidth/2,y:innerHeight/2,nx:0,ny:0};
-
-/* ---------- helpers ---------- */
-function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
-function hasUrl(u){return typeof u==="string"&&u.trim().length>0}
-
-/* Generated voxel-style placeholder thumbnail (no external files needed) */
-function thumb(mod,i){
-  var pal=[["#56FF87","#2fbf63","#1c7d40"],["#259BFF","#1a6fb8","#10497a"]];
-  var seed=0,s=mod.title+i;for(var k=0;k<s.length;k++)seed=(seed*31+s.charCodeAt(k))>>>0;
-  function rnd(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}
-  var out='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400"><rect width="640" height="400" fill="#eef3f6"/>';
-  for(var x=0;x<=640;x+=40)out+='<path d="M'+x+' 0V400" stroke="#000000" stroke-opacity=".05"/>';
-  for(var y=0;y<=400;y+=40)out+='<path d="M0 '+y+'H640" stroke="#000000" stroke-opacity=".05"/>';
-  var n=9;
-  for(var j=0;j<n;j++){
-    var cx=60+rnd()*520,cy=70+rnd()*260,r=18+rnd()*40,c=pal[rnd()>.5?0:1];
-    var a=r*.866,h=r*.5;
-    out+='<path d="M'+cx+' '+(cy-r)+'L'+(cx+a)+' '+(cy-h)+'L'+cx+' '+cy+'L'+(cx-a)+' '+(cy-h)+'Z" fill="'+c[0]+'" fill-opacity=".9"/>';
-    out+='<path d="M'+(cx-a)+' '+(cy-h)+'L'+cx+' '+cy+'L'+cx+' '+(cy+r)+'L'+(cx-a)+' '+(cy+h)+'Z" fill="'+c[1]+'" fill-opacity=".9"/>';
-    out+='<path d="M'+(cx+a)+' '+(cy-h)+'L'+cx+' '+cy+'L'+cx+' '+(cy+r)+'L'+(cx+a)+' '+(cy+h)+'Z" fill="'+c[2]+'" fill-opacity=".9"/>';
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
   }
-  out+='</svg>';
-  return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(out);
-}
-function setImg(img,mod,i){
-  img.alt=mod.title+" thumbnail";
-  var fallback=thumb(mod,i);
-  if(hasUrl(mod.image)){
-    img.addEventListener("error",function(){img.src=fallback},{once:true});
-    img.src=mod.image;
-  }else img.src=fallback;
-}
-function dlButton(mod,small){
-  var cls="btn primary magnetic"+(small?" small":"");
-  if(hasUrl(mod.download)){
-    var a=el("a",cls,"DOWNLOAD MOD ↗");
-    a.href=mod.download.trim();a.target="_blank";a.rel="noopener noreferrer";
-    a.setAttribute("aria-label","Download "+mod.title);
+
+  function buildFilters() {
+    var cats = ["ALL"];
+    BASE_FILTERS.forEach(function (c) { cats.push(c.toUpperCase()); });
+    (Array.isArray(MODS) ? MODS : []).forEach(function (m) {
+      var c = String(m.category || "").toUpperCase();
+      if (c && cats.indexOf(c) === -1) cats.push(c);
+    });
+    chipsEl.textContent = "";
+    cats.forEach(function (c) {
+      var b = el("button", "chip", c === "ALL" ? "ALL MODS" : c);
+      b.type = "button";
+      b.setAttribute("aria-pressed", c === state.cat ? "true" : "false");
+      b.addEventListener("click", function () {
+        state.cat = c;
+        Array.prototype.forEach.call(chipsEl.children, function (x) { x.setAttribute("aria-pressed", "false"); });
+        b.setAttribute("aria-pressed", "true");
+        render();
+      });
+      chipsEl.appendChild(b);
+    });
+  }
+
+  function card(m) {
+    var a = el("article", "card");
+    var thumb = el("div", "thumb");
+    if (m.image) {
+      var img = document.createElement("img");
+      img.src = m.image;
+      img.alt = m.title + " preview image";
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.width = 800; img.height = 500;
+      img.addEventListener("error", function () {
+        img.remove();
+        thumb.appendChild(el("div", "ph", "Preview unavailable"));
+      });
+      thumb.appendChild(img);
+    } else {
+      thumb.appendChild(el("div", "ph", "No preview"));
+    }
+    a.appendChild(thumb);
+    var body = el("div", "cbody");
+    body.appendChild(el("span", "cat", m.category || "Uncategorized"));
+    body.appendChild(el("h3", null, m.title));
+    body.appendChild(el("p", null, m.description || ""));
+    body.appendChild(el("span", "meta", "VERSION: " + (m.version || "N/A")));
+    if (/\.cmd(\?|#|$)/i.test(m.download || "") || /\.cmd$/i.test(m.title || "")) {
+      body.appendChild(el("span", "note", "Windows command script / configuration utility"));
+    }
+    var dl = el("a", "btn");
+    dl.href = m.download;
+    dl.rel = "noopener noreferrer";
+    dl.appendChild(document.createTextNode("DOWNLOAD"));
+    var arr = el("span", "arr", "â†—");
+    arr.setAttribute("aria-hidden", "true");
+    dl.appendChild(arr);
+    dl.setAttribute("aria-label", "Download " + m.title);
+    body.appendChild(dl);
+    a.appendChild(body);
     return a;
   }
-  var s=el("span","btn small",CONFIG.comingSoonText);
-  s.setAttribute("aria-disabled","true");
-  return s;
-}
 
-/* ---------- marquee ---------- */
-(function(){
-  var words=["CREATE","EXPLORE","MODIFY","PLAY","G-TECHMODS","MINECRAFT","INNOVATE"];
-  var t=$("#track"),html="";
-  for(var r=0;r<4;r++)words.forEach(function(w){html+="<span>"+w+" •</span>"});
-  t.innerHTML=html+html;
-})();
-
-/* ---------- FAQ ---------- */
-(function(){
-  var data=[
-    ["Are the Minecraft mods free?","Mods marked as free can be downloaded without payment."],
-    ["How do I download a mod?","Visit the Mods section, select your preferred mod, and click Download Mod."],
-    ["Which Minecraft versions are supported?","Supported versions are listed on each mod's download card."],
-    ["How do I install Minecraft mods?","Installation depends on the mod and its required mod loader. Check the mod description for compatibility and installation instructions."],
-    ["Is G-TechMods affiliated with Mojang?","No. G-TechMods is an independent Minecraft fan project and is not affiliated with Mojang or Microsoft."]
-  ];
-  var list=$("#faqlist");
-  data.forEach(function(d,i){
-    var item=el("div","item reveal");item.style.setProperty("--d",(i*70)+"ms");
-    var btn=el("button","q");btn.type="button";btn.id="q"+i;
-    btn.setAttribute("aria-expanded","false");btn.setAttribute("aria-controls","a"+i);
-    btn.appendChild(el("span",null,d[0]));btn.appendChild(el("span","plus"));
-    var a=el("div","a");a.id="a"+i;a.setAttribute("role","region");a.setAttribute("aria-labelledby","q"+i);
-    var inner=el("div");inner.appendChild(el("p",null,d[1]));a.appendChild(inner);
-    btn.addEventListener("click",function(){
-      var open=btn.getAttribute("aria-expanded")==="true";
-      $$(".q",list).forEach(function(b){b.setAttribute("aria-expanded","false")});
-      btn.setAttribute("aria-expanded",open?"false":"true");
-    });
-    item.appendChild(btn);item.appendChild(a);list.appendChild(item);
-  });
-})();
-
-/* ---------- mod library ---------- */
-var state={cat:"ALL MODS",q:""};
-(function(){
-  var fWrap=$("#filters"),grid=$("#grid"),count=$("#count"),search=$("#search");
-  var cats=["ALL MODS"].concat(CATEGORIES.map(function(c){return c.toUpperCase()}));
-  cats.forEach(function(c){
-    var b=el("button","chip",c);b.type="button";b.setAttribute("aria-pressed",c===state.cat?"true":"false");
-    b.addEventListener("click",function(){
-      state.cat=c;$$(".chip",fWrap).forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
-      render();
-    });
-    fWrap.appendChild(b);
-  });
-  search.addEventListener("input",function(){state.q=search.value.trim().toLowerCase();render()});
-
-  function render(){
-    var list=MODS.map(function(m,i){return {m:m,i:i}}).filter(function(o){
-      var m=o.m,okC=state.cat==="ALL MODS"||String(m.category).toUpperCase()===state.cat;
-      if(!okC)return false;
-      if(!state.q)return true;
-      return (m.title+" "+m.description+" "+m.category+" "+m.version).toLowerCase().indexOf(state.q)>-1;
-    });
-    grid.textContent="";
-    count.textContent=list.length+(list.length===1?" MOD":" MODS")+(state.cat!=="ALL MODS"?" · "+state.cat:"");
-    if(!list.length){
-      grid.appendChild(el("div","empty","No mods match your search. Try another keyword or category."));
+  function render() {
+    grid.textContent = "";
+    var list = Array.isArray(MODS) ? MODS : [];
+    if (!list.length) {
+      var e0 = el("div", "empty");
+      e0.appendChild(el("strong", null, "MODS COMING SOON."));
+      e0.appendChild(el("span", null, "No mods have been added yet. Check back soon."));
+      grid.appendChild(e0);
+      countEl.textContent = "";
       return;
     }
-    list.forEach(function(o,n){
-      var m=o.m;
-      var card=el("article","card tilt reveal");card.style.setProperty("--d",Math.min(n,6)*70+"ms");
-      var th=el("div","thumb"),img=document.createElement("img");
-      img.width=640;img.height=400;img.loading="lazy";img.decoding="async";setImg(img,m,o.i);
-      th.appendChild(img);th.appendChild(el("span","badge cat",m.category));
-      var body=el("div","cbody");
-      body.appendChild(el("h3",null,m.title));
-      body.appendChild(el("p",null,m.description));
-      var foot=el("div","cfoot");
-      foot.appendChild(el("span","badge ver","Minecraft "+m.version));
-      foot.appendChild(dlButton(m,true));
-      body.appendChild(foot);
-      card.appendChild(th);card.appendChild(body);grid.appendChild(card);
+    var q = state.q.trim().toLowerCase();
+    var out = list.filter(function (m) {
+      if (state.cat !== "ALL" && String(m.category || "").toUpperCase() !== state.cat) return false;
+      if (!q) return true;
+      var hay = [m.title, m.category, m.description, m.version].join(" ").toLowerCase();
+      return hay.indexOf(q) !== -1;
     });
-    bindDynamic(grid);
-    revealObserve(grid);
+    countEl.textContent = out.length + (out.length === 1 ? " MOD" : " MODS");
+    if (!out.length) {
+      var e = el("div", "empty");
+      e.appendChild(el("strong", null, "NO MODS FOUND."));
+      e.appendChild(el("span", null, "Try a different search or category."));
+      grid.appendChild(e);
+      return;
+    }
+    out.forEach(function (m) { grid.appendChild(card(m)); });
   }
-  window.__renderMods=render;
+
+  /* Fill featured block from data safely (keeps static HTML if anything fails) */
+  function wireFeatured() {
+    try {
+      var m = MODS[0];
+      if (m && m.download) document.getElementById("feat-dl").href = m.download;
+      var fi = document.querySelector("#feat-img img");
+      if (fi) fi.addEventListener("error", function () {
+        fi.remove();
+        document.getElementById("feat-img").appendChild(el("div", "ph", "Preview unavailable"));
+      });
+    } catch (err) { /* static HTML remains */ }
+  }
+
+  searchEl.addEventListener("input", function () { state.q = searchEl.value; render(); });
+
+  buildFilters();
   render();
-})();
+  wireFeatured();
 
-/* ---------- featured ---------- */
-(function(){
-  if(!MODS.length){$("#featured").style.display="none";return}
-  var idx=0;
-  MODS.forEach(function(m,i){if(m.title===CONFIG.featuredTitle)idx=i});
-  var m=MODS[idx];
-  $("#f-title").textContent=m.title;
-  $("#f-desc").textContent=m.description;
-  setImg($("#f-img"),m,idx);
-  var b=$("#f-badges");
-  b.appendChild(el("span","badge cat flat",m.category));
-  b.appendChild(el("span","badge ver","Minecraft "+m.version));
-  var big=dlButton(m,false);$("#f-btn").appendChild(big);
-})();
-
-/* ---------- contact ---------- */
-(function(){
-  var yt=$("#yt"),mail=$("#mail"),note=$("#cnote");
-  function disable(a,msg){
-    a.setAttribute("aria-disabled","true");a.removeAttribute("target");
-    a.addEventListener("click",function(e){e.preventDefault();note.textContent=msg});
+  /* Mobile menu */
+  var burger = document.getElementById("burger");
+  var menu = document.getElementById("menu");
+  function setMenu(open) {
+    menu.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
   }
-  if(hasUrl(CONFIG.youtubeUrl)){yt.href=CONFIG.youtubeUrl.trim();yt.target="_blank";yt.rel="noopener noreferrer"}
-  else disable(yt,"YouTube link not set yet — add it in the CONFIG section of index.html.");
-  if(hasUrl(CONFIG.email)){mail.href="mailto:"+CONFIG.email.trim()}
-  else disable(mail,"Email not set yet — add it in the CONFIG section of index.html.");
-})();
+  burger.addEventListener("click", function () { setMenu(!menu.classList.contains("open")); });
+  menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && menu.classList.contains("open")) { setMenu(false); burger.focus(); }
+  });
+  window.addEventListener("resize", function () { if (window.innerWidth > 820) setMenu(false); });
 
-/* ---------- split text ---------- */
-function splitText(root){
-  var i=0;
-  var label=root.textContent;
-  function walk(node){
-    Array.prototype.slice.call(node.childNodes).forEach(function(n){
-      if(n.nodeType===3){
-        var frag=document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach(function(part){
-          if(!part)return;
-          if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(" "));return}
-          var w=el("span","w");w.setAttribute("aria-hidden","true");
-          part.split("").forEach(function(ch){
-            var c=el("span","c",ch);c.style.setProperty("--i",i++);w.appendChild(c);
-          });
-          frag.appendChild(w);
+  /* Optional scroll reveal â€” content stays visible if any of this fails */
+  try {
+    var items = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window && items.length &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
         });
-        node.replaceChild(frag,n);
-      }else if(n.nodeType===1){walk(n)}
-    });
-  }
-  walk(root);
-  if(!root.hasAttribute("aria-label")&&!root.hasAttribute("aria-hidden"))root.setAttribute("aria-label",label.replace(/\s+/g," ").trim());
-}
-$$("[data-split]").forEach(splitText);
-
-/* ---------- reveal on scroll ---------- */
-var io=null;
-function revealObserve(scope){
-  var items=$$(".reveal:not(.in),[data-split]:not(.in)",scope||document);
-  if(!("IntersectionObserver" in window)||reduce){items.forEach(function(x){x.classList.add("in")});return}
-  if(!io){
-    io=new IntersectionObserver(function(es){
-      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}});
-    },{threshold:.12,rootMargin:"0px 0px -6% 0px"});
-  }
-  items.forEach(function(x){if(x.closest(".hero"))return;io.observe(x)});
-}
-revealObserve();
-window.addEventListener("load",function(){
-  setTimeout(function(){$$(".hero [data-split], .hero .uline").forEach(function(x){x.classList.add("in")})},150);
-  document.querySelector(".hero").classList.add("in");
-});
-setTimeout(function(){$$(".hero [data-split], .hero .uline").forEach(function(x){x.classList.add("in")})},1200);
-
-/* ---------- nav ---------- */
-(function(){
-  var nav=$("#nav"),burger=$("#burger"),menu=$("#menu");
-  function onScroll(){nav.classList.toggle("solid",scrollY>40)}
-  addEventListener("scroll",onScroll,{passive:true});onScroll();
-  function close(){menu.classList.remove("open");burger.setAttribute("aria-expanded","false")}
-  burger.addEventListener("click",function(){
-    var o=menu.classList.toggle("open");burger.setAttribute("aria-expanded",o?"true":"false");
-  });
-  $$("a",menu).forEach(function(a){a.addEventListener("click",close)});
-  addEventListener("keydown",function(e){if(e.key==="Escape")close()});
-  addEventListener("resize",function(){if(innerWidth>860)close()});
-
-  var links=$$(".nl",menu),map={};
-  links.forEach(function(a){map[a.getAttribute("href").slice(1)]=a});
-  var secs=["home","mods","about","faq","contact"].map(function(id){return document.getElementById(id)}).filter(Boolean);
-  function setActive(){
-    var y=scrollY+innerHeight*.35,cur="home";
-    secs.forEach(function(s){if(s.offsetTop<=y)cur=s.id});
-    if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)cur="contact";
-    links.forEach(function(a){a.classList.toggle("active",a===map[cur])});
-  }
-  addEventListener("scroll",setActive,{passive:true});addEventListener("resize",setActive);setActive();
-})();
-
-/* ---------- magnetic buttons & tilt (fine pointers only) ---------- */
-var bound=new WeakSet();
-function bindDynamic(scope){
-  if(!fine||reduce)return;
-  $$(".magnetic",scope).forEach(function(b){
-    if(bound.has(b))return;bound.add(b);
-    b.addEventListener("pointermove",function(e){
-      var r=b.getBoundingClientRect();
-      b.style.transform="translate("+((e.clientX-r.left-r.width/2)*.25)+"px,"+((e.clientY-r.top-r.height/2)*.35)+"px)";
-    });
-    b.addEventListener("pointerleave",function(){b.style.transform=""});
-  });
-  $$(".tilt",scope).forEach(function(c){
-    if(bound.has(c))return;bound.add(c);
-    c.addEventListener("pointermove",function(e){
-      var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-      c.style.transition="transform .1s linear";
-      c.style.transform="perspective(900px) rotateX("+(-y*8)+"deg) rotateY("+(x*10)+"deg) translateY(-4px)";
-    });
-    c.addEventListener("pointerleave",function(){
-      c.style.transition="";c.style.transform="";
-    });
-  });
-}
-bindDynamic(document);
-
-/* ---------- cursor + mouse-follow shapes ---------- */
-(function(){
-  addEventListener("pointermove",function(e){
-    mouse.x=e.clientX;mouse.y=e.clientY;
-    mouse.nx=e.clientX/innerWidth-.5;mouse.ny=e.clientY/innerHeight-.5;
-  },{passive:true});
-  if(!fine||reduce)return;
-  var cur=$("#cursor"),cx=mouse.x,cy=mouse.y,shapes=$$(".follow"),sx=[],sy=[];
-  shapes.forEach(function(){sx.push(0);sy.push(0)});
-  document.addEventListener("pointerover",function(e){
-    cur.classList.add("on");
-    cur.classList.toggle("big",!!e.target.closest("a,button,input"));
-  });
-  document.addEventListener("pointerleave",function(){cur.classList.remove("on")});
-  var hero=$(".hero"),running=true;
-  function loop(){
-    cx+=(mouse.x-cx)*.18;cy+=(mouse.y-cy)*.18;
-    cur.style.transform="translate("+cx+"px,"+cy+"px)";
-    if(scrollY<innerHeight*1.1){
-      shapes.forEach(function(s,i){
-        var d=+s.getAttribute("data-depth");
-        sx[i]+=(mouse.nx*d-sx[i])*.06;sy[i]+=(mouse.ny*d-sy[i])*.06;
-        s.style.translate=sx[i]+"px "+(sy[i]-scrollY*.12)+"px";
-      });
+      }, { threshold: 0.1, rootMargin: "0px 0px -5% 0px" });
+      document.documentElement.classList.add("anim");
+      items.forEach(function (n) { io.observe(n); });
+      setTimeout(function () { items.forEach(function (n) { n.classList.add("in"); }); }, 3000);
     }
-    if(running)requestAnimationFrame(loop);
+  } catch (err) {
+    document.documentElement.classList.remove("anim");
   }
-  document.addEventListener("visibilitychange",function(){
-    if(document.hidden)running=false;else if(!running){running=true;requestAnimationFrame(loop)}
-  });
-  requestAnimationFrame(loop);
-})();
-
-/* ---------- animated canvas background ---------- */
-(function(){
-  var cv=$("#bg"),ctx=cv.getContext("2d");
-  if(!ctx)return;
-  var W=0,H=0,dpr=1,mobile=innerWidth<700,shapes=[],parts=[],running=true,t0=performance.now();
-  var G="30,200,95",B="37,155,255";
-  var CUBE=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
-  var EDGES=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
-
-  function resize(){
-    mobile=innerWidth<700;
-    dpr=Math.min(devicePixelRatio||1,mobile?1.25:2);
-    W=innerWidth;H=innerHeight;
-    cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    build();if(reduce)draw(0);
-  }
-  function build(){
-    var n=mobile?9:18,types=["wire","voxel","diamond","circle","square"];
-    shapes=[];parts=[];
-    for(var i=0;i<n;i++){
-      shapes.push({
-        type:types[i%types.length],x:Math.random(),y:Math.random(),z:.3+Math.random()*.7,
-        size:(mobile?14:18)+Math.random()*(mobile?26:42),rot:Math.random()*6.28,rs:(Math.random()-.5)*.5,
-        drift:(Math.random()-.5)*.012,col:i%2?B:G,ph:Math.random()*6.28
-      });
-    }
-    var pn=mobile?22:50;
-    for(var j=0;j<pn;j++)parts.push({x:Math.random(),y:Math.random(),r:.6+Math.random()*1.4,s:.004+Math.random()*.012,col:j%2?B:G,ph:Math.random()*6.28});
-  }
-  function wrap(v,max){var m=max+200;return ((v+100)%m+m)%m-100}
-
-  function drawWire(x,y,s,rot,col,a){
-    var cy=Math.cos(rot),sy=Math.sin(rot),cx=Math.cos(rot*.7),sx=Math.sin(rot*.7),pts=[];
-    for(var i=0;i<8;i++){
-      var p=CUBE[i],X=p[0]*cy-p[2]*sy,Z=p[0]*sy+p[2]*cy,Y=p[1]*cx-Z*sx;
-      pts.push([x+X*s*.6,y+Y*s*.6]);
-    }
-    ctx.strokeStyle="rgba("+col+","+a+")";ctx.lineWidth=1.2;ctx.beginPath();
-    EDGES.forEach(function(e){ctx.moveTo(pts[e[0]][0],pts[e[0]][1]);ctx.lineTo(pts[e[1]][0],pts[e[1]][1])});
-    ctx.stroke();
-  }
-  function drawVoxel(x,y,s,col,a){
-    var r=s*.6,ax=r*.866,h=r*.5,top=col===G?"30,200,95":"37,155,255";
-    ctx.fillStyle="rgba("+top+","+a*.9+")";
-    ctx.beginPath();ctx.moveTo(x,y-r);ctx.lineTo(x+ax,y-h);ctx.lineTo(x,y);ctx.lineTo(x-ax,y-h);ctx.closePath();ctx.fill();
-    ctx.fillStyle="rgba("+top+","+a*.45+")";
-    ctx.beginPath();ctx.moveTo(x-ax,y-h);ctx.lineTo(x,y);ctx.lineTo(x,y+r);ctx.lineTo(x-ax,y+h);ctx.closePath();ctx.fill();
-    ctx.fillStyle="rgba("+top+","+a*.22+")";
-    ctx.beginPath();ctx.moveTo(x+ax,y-h);ctx.lineTo(x,y);ctx.lineTo(x,y+r);ctx.lineTo(x+ax,y+h);ctx.closePath();ctx.fill();
-  }
-  function draw(now){
-    var t=(now-t0)/1000;
-    ctx.clearRect(0,0,W,H);
-    /* moving grid */
-    var gs=64,off=(t*6+scrollY*.08)%gs;
-    ctx.strokeStyle="rgba(8,13,18,.06)";ctx.lineWidth=1;ctx.beginPath();
-    for(var x=-gs+off;x<W+gs;x+=gs){ctx.moveTo(x,0);ctx.lineTo(x,H)}
-    for(var y=-gs+off;y<H+gs;y+=gs){ctx.moveTo(0,y);ctx.lineTo(W,y)}
-    ctx.stroke();
-    /* particles */
-    parts.forEach(function(p){
-      var px=wrap(p.x*W+Math.sin(t*.4+p.ph)*12-mouse.nx*20,W),py=wrap(p.y*H-t*p.s*H*6-scrollY*.1,H);
-      ctx.fillStyle="rgba("+p.col+","+(.25+.25*Math.sin(t*1.5+p.ph))+")";
-      ctx.beginPath();ctx.arc(px,py,p.r,0,6.283);ctx.fill();
-    });
-    /* shapes */
-    shapes.forEach(function(s){
-      var px=wrap(s.x*W+Math.sin(t*.3+s.ph)*18-mouse.nx*60*s.z,W);
-      var py=wrap(s.y*H+t*s.drift*H*6-scrollY*.18*s.z-mouse.ny*40*s.z,H);
-      var a=.12+.22*s.z,sz=s.size*s.z,rot=s.rot+t*s.rs;
-      if(s.type==="wire")drawWire(px,py,sz*1.4,rot,s.col,a+.1);
-      else if(s.type==="voxel")drawVoxel(px,py,sz,s.col,a);
-      else if(s.type==="diamond"){
-        ctx.strokeStyle="rgba("+s.col+","+(a+.1)+")";ctx.lineWidth=1.3;ctx.beginPath();
-        ctx.moveTo(px,py-sz*.7);ctx.lineTo(px+sz*.5,py);ctx.lineTo(px,py+sz*.7);ctx.lineTo(px-sz*.5,py);ctx.closePath();ctx.stroke();
-      }else if(s.type==="circle"){
-        ctx.fillStyle="rgba("+s.col+","+a*.35+")";ctx.beginPath();ctx.arc(px,py,sz*.5,0,6.283);ctx.fill();
-        ctx.strokeStyle="rgba("+s.col+","+(a+.08)+")";ctx.lineWidth=1.2;ctx.stroke();
-      }else{
-        ctx.save();ctx.translate(px,py);ctx.rotate(rot);
-        ctx.strokeStyle="rgba("+s.col+","+(a+.1)+")";ctx.lineWidth=1.3;ctx.strokeRect(-sz*.5,-sz*.5,sz,sz);ctx.restore();
-      }
-    });
-  }
-  var last=0;
-  function loop(now){
-    if(!running)return;
-    /* ~45fps cap on mobile to save battery */
-    if(!mobile||now-last>22){draw(now);last=now}
-    requestAnimationFrame(loop);
-  }
-  document.addEventListener("visibilitychange",function(){
-    if(document.hidden)running=false;else if(!running&&!reduce){running=true;requestAnimationFrame(loop)}
-  });
-  var rt;addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(resize,150)});
-  resize();
-  if(!reduce)requestAnimationFrame(loop);
-  else addEventListener("scroll",function(){draw(0)},{passive:true});
-})();
-
 })();
 </script>
 </body>
